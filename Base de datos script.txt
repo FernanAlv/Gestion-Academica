@@ -1,0 +1,49 @@
+DROP TABLE IF EXISTS calificaciones CASCADE;
+DROP TABLE IF EXISTS estudiantes CASCADE;
+DROP TABLE IF EXISTS materias CASCADE;
+DROP TABLE IF EXISTS usuarios CASCADE;
+
+CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE estudiantes (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL
+);
+
+CREATE TABLE materias (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    creditos INTEGER NOT NULL
+);
+
+CREATE TABLE calificaciones (
+    id SERIAL PRIMARY KEY,
+    estudiante_id INTEGER REFERENCES estudiantes(id) ON DELETE CASCADE,
+    materia_id INTEGER REFERENCES materias(id) ON DELETE CASCADE,
+    nota DECIMAL(5,2) NOT NULL,
+    fecha_evaluacion DATE DEFAULT CURRENT_DATE
+);
+
+INSERT INTO usuarios (username, password) VALUES 
+('Admin', 'fernan1423');
+
+INSERT INTO estudiantes (nombre, email) VALUES 
+('Carlos Martinez', 'carlos@unicah.edu'),
+('Ana Hernandez', 'ana@unicah.edu'),
+('Luis Gomez', 'luis@unicah.edu');
+
+INSERT INTO materias (nombre, creditos) VALUES 
+('Programación I', 4),
+('Base de Datos I', 4),
+('Matemática Discreta', 4),
+('Ética Profesional', 3);
+
+INSERT INTO calificaciones (estudiante_id, materia_id, nota) VALUES 
+(1, 1, 95.00),
+(1, 2, 88.50),
+(2, 1, 75.00);
