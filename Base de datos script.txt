@@ -30,7 +30,7 @@ CREATE TABLE calificaciones (
 );
 
 INSERT INTO usuarios (username, password) VALUES 
-('Admin', 'fernan1423');
+('Admin', 'admin123');
 
 INSERT INTO estudiantes (nombre, email) VALUES 
 ('Carlos Martinez', 'carlos@unicah.edu'),
@@ -46,4 +46,5 @@ INSERT INTO materias (nombre, creditos) VALUES
 INSERT INTO calificaciones (estudiante_id, materia_id, nota) VALUES 
 (1, 1, 95.00),
 (1, 2, 88.50),
+
 (2, 1, 75.00);
